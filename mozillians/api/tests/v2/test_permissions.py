@@ -33,10 +33,8 @@ class MozilliansPermissionTests(TestCase):
                 ok_(mozillians_permission.has_permission(request, view))
 
         incr_mock.assert_has_calls([
-            call('apiv2.auth.success'),
-            call('apiv2.requests.app.{0}'.format(app.id)),
-            call('apiv2.requests.total'),
-            call('apiv2.resources.DummyClass')
+            call('apiv2.auth.success','apiv2.requests.app.{0}'.format(app.id),'apiv2.requests.total','apiv2.resources.DummyClass'),
+            
         ])
         ok_(APIv2App.objects.filter(id=app.id, last_used=timestamp).exists())
 
